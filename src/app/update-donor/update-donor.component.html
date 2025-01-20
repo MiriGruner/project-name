@@ -1,0 +1,39 @@
+<div class="form-container">
+    <label for="name"> </label>
+    <input
+      type="text"
+      id="name"
+      [(ngModel)]="donors.name"
+      placeholder="name"
+      name="name"
+      required
+    />
+  
+    <label for="price"></label>
+    <input
+      type="text"
+      id="price"
+      [(ngModel)]="donors.email"
+      placeholder="email"
+      name="price"
+      required
+    />
+  
+   
+  
+    <label for="donor"></label>
+    <input
+      type="text"
+      id="donor"
+      [(ngModel)]="donors.phone"
+      placeholder="phone"
+      name="donor"
+      required
+    />
+  
+    <div class="button-group">
+      <button (click)="updateDonor()">עדכן </button>
+     
+    </div>
+  </div>
+

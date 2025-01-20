@@ -1,0 +1,72 @@
+/* כללי */
+.mat-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* שורת כותרת */
+  .mat-header-row {
+    background-color: #4CAF50; /* צבע רקע כותרת */
+    color: white; /* צבע טקסט לבן */
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* תא כותרת */
+  .mat-header-cell {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  /* שורת נתונים */
+  .mat-row {
+    transition: background-color 0.3s ease; /* אפקט מעבר בעת ריחוף על השורה */
+  }
+  
+  .mat-row:hover {
+    background-color: #f1f1f1; /* צבע רקע בעת ריחוף */
+  }
+  
+  /* תא נתונים */
+  .mat-cell {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd; /* קו תחתון לתאים */
+  }
+  
+  /* כפתור עדכון */
+  button.mat-button {
+    background-color: #2196F3; /* צבע רקע כפתור */
+    color: white; /* צבע טקסט לבן */
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* אפקט מעבר בעת ריחוף */
+  }
+  
+  button.mat-button:hover {
+    background-color: #1976D2; /* צבע רקע כפתור בעת ריחוף */
+  }
+  
+  /* כפתור מחיקה */
+  app-delete-item {
+    display: inline-block;
+    cursor: pointer;
+    color: #F44336; /* צבע אדום למחיקה */
+    font-size: 18px;
+    transition: color 0.3s ease; /* אפקט מעבר בעת ריחוף */
+  }
+  
+  app-delete-item:hover {
+    color: #D32F2F; /* צבע אדום כהה יותר בעת ריחוף */
+  }
+  
+  /* התאמת גודל טבלה */
+  .mat-elevation-z8 {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* צלליות לטבלה */
+  }
+  
+
+

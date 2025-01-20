@@ -3,30 +3,44 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "project-name": {
+    "angularexampleapp": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "standalone": true,
+          "changeDetection": "OnPush"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/project-name",
+            "outputPath": "dist/angularexampleapp",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "browser": "src/main.ts",
+            "polyfills": ["@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
+            "i18nMissingTranslation": "warning",
+            "inlineStyleLanguage": "css",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": ""
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "normalize.css/normalize.css",
+              "@shoelace-style/shoelace/dist/themes/light.css",
+              "src/styles/global.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -34,24 +48,38 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "localize": ["es", "en"]
+            },
+            "production-sourcemaps": {
+              "sourceMap": true,
               "outputHashing": "all"
             },
-            "development": {
-              "buildOptimizer": false,
+            "development-en": {
               "optimization": false,
-              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "development-es": {
+              "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "localize": ["es"]
             }
           },
           "defaultConfiguration": "production"
@@ -60,39 +88,74 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "project-name:build:production"
+              "buildTarget": "angularexampleapp:build:production"
             },
-            "development": {
-              "browserTarget": "project-name:build:development"
+            "development-en": {
+              "buildTarget": "angularexampleapp:build:development-en"
+            },
+            "development-es": {
+              "buildTarget": "angularexampleapp:build:development-es"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development-en"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
           "options": {
-            "browserTarget": "project-name:build"
+            "buildTarget": "angularexampleapp:build",
+            "format": "xlf",
+            "outputPath": "src/locale",
+            "targetFiles": ["messages.es.xlf"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["@angular/localize/init"],
             "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "css",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": ""
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "normalize.css/normalize.css",
+              "@shoelace-style/shoelace/dist/themes/light.css",
+              "src/styles/global.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        }
+      },
+      "i18n": {
+        "sourceLocale": {
+          "code": "en",
+          "baseHref": "/"
+        },
+        "locales": {
+          "es": {
+            "translation": "src/locale/messages.es.xlf",
+            "baseHref": "/es/"
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "49e1320d-9031-4d19-bb7c-2d84a0f2fd49",
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }

@@ -1,0 +1,29 @@
+<table border="1" style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>שם תורם</th>
+        <th>אימייל</th>
+        <th>טלפון</th>
+        <th>פעולות</th> <!-- עמודה נוספת עבור מחיקה ועדכון -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donor of donors">
+        <td>{{ donor.name }}</td>
+        <td>{{ donor.email }}</td>
+        <td>{{ donor.phone }}</td>
+        <td>
+        
+          <!-- <app-delete-donor [donorName]="donor.name"></app-delete-donor>   </td> -->
+          
+        <td>
+          <app-update-donor [donor2]="donor"></app-update-donor></td>
+     
+      </tr>
+    </tbody>
+  </table>
+  
+
+
+  <app-add-donor></app-add-donor>
+  

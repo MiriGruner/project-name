@@ -1,0 +1,84 @@
+<div id="cent">
+    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+      <h3>יצירת חשבון</h3>
+      <div class="text-center mb-5"></div>
+      <div>
+        <form [formGroup]="frmUserRegister">
+          <!-- שם משתמש -->
+          <input
+            id="name"
+            type="text"
+            placeholder="שם משתמש"
+            pInputText
+            class="w-full mb-3"
+            formControlName="name"
+          />
+          <div
+            *ngIf="frmUserRegister.get('name')?.invalid && frmUserRegister.get('name')?.touched"
+            class="error-message"
+          >
+            *נא להזין שם משתמש חוקי.
+          </div>
+  
+          <!-- סיסמה -->
+          <input
+            id="password1"
+            type="password"
+            placeholder="סיסמה"
+            pInputText
+            class="w-full mb-3"
+            formControlName="password"
+            (input)="checkPasswordConditions(frmUserRegister.get('password')?.value)"
+          />
+          <ul>
+            <li [ngClass]="{ red: !uppercase, green: uppercase }">אות גדולה (A-Z)</li>
+            <li [ngClass]="{ red: !lowercase, green: lowercase }">אות קטנה (a-z)</li>
+            <li [ngClass]="{ red: !specialCharacters, green: specialCharacters }">תו מיוחד (!&#64;#$%^&*)</li>
+            <li [ngClass]="{ red: !digits, green: digits }">ספרה</li>
+            <li [ngClass]="{ red: !minimumLength, green: minimumLength }">אורך מינימלי של 6 תווים</li>
+          </ul>
+  
+          <!-- אימייל -->
+          <input
+            id="email1"
+            type="text"
+            placeholder="מייל"
+            pInputText
+            class="w-full mb-3"
+            formControlName="email"
+          />
+          <div
+            *ngIf="frmUserRegister.get('email')?.hasError('required') && frmUserRegister.get('email')?.touched"
+            class="error-message"
+          >
+            *נדרש אימייל.
+          </div>
+          <div
+            *ngIf="frmUserRegister.get('email')?.hasError('email') && frmUserRegister.get('email')?.touched"
+            class="error-message"
+          >
+            *פורמט דוא"ל לא חוקי.
+          </div>
+  
+          <!-- כפתור שליחה -->
+          <button
+            pButton
+            pRipple
+            label="צור חשבון"
+            icon="pi pi-user"
+            class="w-full"
+            (click)="register()"
+            [disabled]="!frmUserRegister.valid" 
+          >
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <br />
+  
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+    © 2025 מכירה סינית: <a class="text-reset fw-bold" href="#!">YadBeyad.com</a>
+  </div>
+  
