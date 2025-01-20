@@ -16,12 +16,12 @@ export class LoginService {
   reloadLogin$: Observable<boolean> = this.reloadLoginSubject.asObservable();
 
   login(user: Login): Observable<string> {
-    let url = "https://localhost:7023/api/login";
+    let url = "https://localhost:7023/api/Login";
     return this.httpClient.post<string>(url, user);
   }
 
   register(user:Register): Observable<any>{
-    let url="https://localhost:7023/api/register";
+    let url="https://localhost:7023/api/Register";
     return this.httpClient.post<any>(url,user)
   }
   setReloadGift() {

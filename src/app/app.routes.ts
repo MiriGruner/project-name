@@ -4,10 +4,12 @@ import { Routes } from '@angular/router';
 import { GiftManageComponent } from './compomnents/gift-manage/donor-management/gift-manage.component';
 import { DonorManageComponent } from './compomnents/gift-manage/donor-management/donor-management.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   { path: 'gift-manage', component: GiftManageComponent },
   { path: 'donor-manage', component: DonorManageComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 
 ];
