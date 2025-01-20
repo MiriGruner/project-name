@@ -28,4 +28,20 @@ export class LoginService {
     let flag = this.reloadLoginSubject.value;
     this.reloadLoginSubject.next(!flag);
   }
+
+  saveToken(token: string): void {
+    localStorage.setItem('jwt', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('jwt');
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken();
+  }
+
+  logout(): void {
+    localStorage.removeItem('jwt');
+  }
 }

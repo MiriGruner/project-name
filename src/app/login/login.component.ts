@@ -28,7 +28,7 @@ export class LoginComponent {
 
     this.loginService.login(user).subscribe({
       next: (response) => {
-        localStorage.setItem('jwt', response); // שמירת ה-JWT ב-localStorage
+        sessionStorage.setItem('jwt', response); // שמירת ה-JWT ב-localStorage
         this.router.navigate(['/gift-manage']); // ניתוב לדף הבא
       },
       error: () => {
